@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دعوة زفاف | عائلة مامو</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--burgundy:#7f1d2d;--gold:#c8a35b;--cream:#fffaf3;--dark:#171313}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;font-family:"Cairo",sans-serif;background:#111;color:var(--dark)}
+#intro-screen{position:fixed;inset:0;z-index:99999;width:100vw;height:100dvh;background:#000;cursor:pointer;transition:opacity 1.15s ease,visibility 1.15s ease}
+#intro-screen.opening{opacity:0;visibility:hidden;pointer-events:none}
+.opening-image{width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;-webkit-tap-highlight-color:transparent}
+.page{min-height:100vh;position:relative;background:linear-gradient(rgba(20,8,12,.42),rgba(20,8,12,.52)),url("background.jpg") center/cover fixed}
+.page:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.16));z-index:0}
+.content{position:relative;z-index:1;padding:35px 16px 55px}.card{width:min(900px,100%);margin:0 auto 28px;padding:34px 22px;border-radius:28px;background:rgba(255,250,243,.91);border:1px solid rgba(255,255,255,.7);box-shadow:0 22px 55px rgba(0,0,0,.22);text-align:center;backdrop-filter:blur(8px)}
+.gold-line{width:95px;height:2px;margin:0 auto 22px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}.ornament{color:var(--gold);font-size:24px;letter-spacing:9px;margin-bottom:12px}
+.quran{font-family:"Amiri",serif;font-size:clamp(1.45rem,3.8vw,2.25rem);line-height:2.15;font-weight:700;margin:0 auto 22px;color:#241a1b}
+.prayer{font-family:"Aref Ruqaa",serif;color:var(--burgundy);font-size:clamp(1.55rem,4vw,2.25rem);margin:15px 0 24px}
+.family{font-size:clamp(1rem,2.8vw,1.25rem);line-height:2;font-weight:700;color:#3a3030}
+.name-image{display:block;width:min(360px,82vw);max-height:180px;object-fit:contain;margin:20px auto}
+.events{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;width:min(900px,100%);margin:0 auto 28px;position:relative;z-index:1}
+.event-card{background:rgba(255,250,243,.94);border-radius:26px;padding:28px 18px;text-align:center;box-shadow:0 20px 45px rgba(0,0,0,.2);border:1px solid rgba(255,255,255,.7)}
+.event-date{font-family:"Aref Ruqaa",serif;color:var(--burgundy);font-size:2.2rem;font-weight:700}.event-title{font-size:1.2rem;font-weight:700;color:#292020;line-height:1.8}.event-place{color:#65585a;line-height:1.9;margin-top:10px}
+.countdown-title{font-family:"Aref Ruqaa",serif;color:var(--burgundy);font-size:clamp(1.8rem,4.5vw,2.6rem);margin:0 0 22px}.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;direction:ltr}.counter{background:rgba(255,255,255,.75);border:1px solid rgba(127,29,45,.12);border-radius:18px;padding:15px 6px}.counter strong{display:block;color:var(--burgundy);font-size:clamp(1.8rem,6vw,3rem);line-height:1}.counter span{display:block;margin-top:9px;color:#6c5d60;font-size:.82rem;font-weight:700}
+.no-photo-icon{width:118px;height:118px;margin:0 auto 22px;border:3px solid var(--burgundy);border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;background:rgba(255,255,255,.72);box-shadow:0 15px 35px rgba(127,29,45,.12)}
+.camera-shape{width:55px;height:39px;border:4px solid var(--burgundy);border-radius:10px;position:relative}.camera-shape:before{content:"";position:absolute;width:18px;height:9px;border:4px solid var(--burgundy);border-bottom:0;border-radius:7px 7px 0 0;top:-13px;left:14px}.camera-shape:after{content:"";position:absolute;width:16px;height:16px;border:4px solid var(--burgundy);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%)}.no-photo-icon .slash{position:absolute;width:105px;height:5px;border-radius:10px;background:var(--burgundy);transform:rotate(-45deg)}
+.no-photo-title{font-family:"Aref Ruqaa",serif;color:var(--burgundy);font-size:clamp(1.8rem,5vw,2.5rem);margin:0 0 12px}.no-photo-text{color:#4d4143;line-height:2;margin:0 auto;max-width:650px;font-weight:600}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  grid-template-rows:190px 190px;
+  gap:12px;
+  margin-top:10px;
+}
+
+.gallery-item{
+  border:0;
+  padding:0;
+  margin:0;
+  background:none;
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  display:block;
+  width:100%;
+  height:100%;
+  box-shadow:0 10px 28px rgba(0,0,0,.14);
+}
+
+.gallery-item img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transition:transform .55s ease;
+}
+
+.gallery-item:hover img{
+  transform:scale(1.05);
+}
+
+.gallery-main{
+  grid-row:1 / 3;
+}
+
+#gallery-lightbox{
+  position:fixed;
+  inset:0;
+  z-index:100000;
+  background:rgba(8,5,6,.96);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:30px 55px;
+}
+
+#gallery-lightbox.open{
+  display:flex;
+}
+
+#gallery-preview{
+  max-width:min(92vw,900px);
+  max-height:88vh;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  border-radius:14px;
+  box-shadow:0 20px 70px rgba(0,0,0,.55);
+}
+
+#gallery-close,
+#gallery-prev,
+#gallery-next{
+  position:absolute;
+  border:0;
+  color:#fff;
+  background:rgba(255,255,255,.12);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  cursor:pointer;
+  font-size:32px;
+  line-height:1;
+}
+
+#gallery-close{
+  top:20px;
+  right:20px;
+}
+
+#gallery-prev{
+  left:20px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+#gallery-next{
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+}
+
+#gallery-counter{
+  position:absolute;
+  bottom:18px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  font-weight:700;
+  direction:ltr;
+}
+
+@media(max-width:700px){
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:180px 180px;
+  }
+
+  .gallery-main{
+    grid-column:1 / 3;
+    grid-row:auto;
+  }
+
+  #gallery-lightbox{
+    padding:25px 18px;
+  }
+
+  #gallery-preview{
+    max-width:94vw;
+    max-height:82vh;
+  }
+}
+
+
+.venue-image{
+  display:block;
+  width:min(720px,100%);
+  height:300px;
+  object-fit:cover;
+  margin:0 auto 20px;
+  border-radius:22px;
+  box-shadow:0 15px 35px rgba(0,0,0,.16);
+}
+
+.venue-name{
+  font-family:"Aref Ruqaa",serif;
+  color:var(--burgundy);
+  font-size:2rem;
+  margin:8px 0 18px;
+}
+
+.qr-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin:10px auto 20px;
+}
+
+.qr-code{
+  width:220px;
+  height:220px;
+  padding:10px;
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.14);
+}
+
+.qr-caption{
+  margin:12px 0 0;
+  color:#6c5d60;
+  font-weight:600;
+}
+
+.map-link{
+  display:inline-block;
+  padding:12px 25px;
+  border-radius:999px;
+  background:var(--burgundy);
+  color:#fff;
+  text-decoration:none;
+  box-shadow:0 8px 20px rgba(127,29,45,.2);
+}
+
+@media(max-width:700px){
+  .venue-image{height:230px}
+  .qr-code{width:190px;height:190px}
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
+
+.made-with-love{
+  position:relative;
+  z-index:1;
+  text-align:center;
+  color:#fff;
+  padding:22px 15px 42px;
+  text-shadow:0 2px 10px rgba(0,0,0,.45);
+}
+
+.made-line{
+  width:75px;
+  height:1px;
+  margin:0 auto;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.75),transparent);
+}
+
+.made-ornament{
+  color:#e4c57d;
+  font-size:16px;
+  margin:10px 0 4px;
+}
+
+.made-title{
+  font-family:"Aref Ruqaa",serif;
+  font-size:1.8rem;
+  letter-spacing:.5px;
+}
+
+footer{position:relative;z-index:1;text-align:center;color:#fff;padding:20px 15px 35px;text-shadow:0 2px 10px rgba(0,0,0,.45)}
+#musicBtn{position:fixed;top:16px;left:16px;z-index:1000;width:48px;height:48px;border:1px solid rgba(255,255,255,.7);border-radius:50%;background:rgba(127,29,45,.88);color:#fff;display:none;align-items:center;justify-content:center;cursor:pointer}
+@media(max-width:700px){.events{grid-template-columns:1fr}.card{padding:28px 16px;border-radius:24px}.content{padding:22px 12px 40px}.countdown{gap:7px}.counter{padding:13px 3px}}
+</style>
+</head>
+<body>
+
+<div id="intro-screen" onclick="openInvitation()">
+  <img src="opening.jpg" class="opening-image" alt="فتح الدعوة">
+</div>
+
+<audio id="wedding-music" loop preload="auto"><source src="music.mp3" type="audio/mpeg"></audio>
+<button id="musicBtn" type="button" aria-label="الموسيقى">♫</button>
+
+<main id="main-content" class="page">
+<div class="content">
+
+<section class="card reveal">
+<div class="ornament">✦</div><div class="gold-line"></div>
+<p class="quran">﴿ وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِي ذَٰلِكَ لَآيَاتٍ لِّقَوْمٍ يَتَفَكَّرُونَ ﴾</p>
+<p class="prayer">أحيطوا ابننا بدعائكم</p>
+<p class="family">تتشرف عائلة مامو<br>بحضور حفل زفاف ابننا</p>
+<img src="hussein-name.png" class="name-image" alt="اسم العريس حسين">
+</section>
+
+<section class="events reveal">
+
+<article class="event-card" style="grid-column:1 / -1;">
+  <div class="event-date">12 سبتمبر 2026</div>
+  <div class="event-title">
+    حفل زفاف حسين
+  </div>
+  <div class="event-place">
+    صالة الصنوبر 01
+  </div>
+</article>
+
+</section>
+
+
+<section class="card reveal" id="location">
+  <div class="ornament">✦</div>
+  <div class="gold-line"></div>
+
+  <h2 class="countdown-title" style="margin-bottom:10px;">
+    مكان الحفل
+  </h2>
+
+  <img
+    src="venue.jpg"
+    class="venue-image"
+    alt="صالة الصنوبر 01">
+
+  <p class="venue-name">
+    صالة الصنوبر 01
+  </p>
+
+  <div class="qr-wrap">
+    <a
+      href="https://maps.app.goo.gl/3LgmWBZV1zoJDmCD8"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="فتح موقع صالة الصنوبر 01">
+
+      <div class="qr-code" id="venueQr" aria-label="رمز QR لموقع صالة الصنوبر 01"></div>
+
+    </a>
+
+    <p class="qr-caption">
+      امسح الرمز للوصول إلى موقع الصالة
+    </p>
+  </div>
+
+  <a
+    href="https://maps.app.goo.gl/3LgmWBZV1zoJDmCD8"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="map-link">
+    فتح الموقع في Google Maps
+  </a>
+</section>
+
+
+
+<!-- معرض الصور -->
+<section class="card reveal" id="gallery">
+  <div class="ornament">✦</div>
+  <div class="gold-line"></div>
+
+  <h2 class="countdown-title" style="margin-bottom:10px;">
+    من أجمل لحظاتنا
+  </h2>
+
+  <p style="color:#6c5d60; margin:0 0 22px; font-weight:600;">
+    ذكريات نحتفظ بها بكل حب
+  </p>
+
+  <div class="gallery-grid">
+    <button class="gallery-item gallery-main" type="button" data-index="0">
+      <img src="gallery1.jpg" alt="من أجمل لحظات حياة">
+    </button>
+
+    <button class="gallery-item" type="button" data-index="1">
+      <img src="gallery2.jpg" alt="من أجمل لحظات حياة">
+    </button>
+
+    <button class="gallery-item" type="button" data-index="2">
+      <img src="gallery3.jpg" alt="من أجمل لحظات حياة">
+    </button>
+  </div>
+</section>
+
+<!-- معرض ملء الشاشة -->
+<div id="gallery-lightbox" aria-hidden="true">
+  <button id="gallery-close" type="button" aria-label="إغلاق">×</button>
+  <button id="gallery-prev" type="button" aria-label="الصورة السابقة">‹</button>
+
+  <img id="gallery-preview" src="gallery1.jpg" alt="صورة من المعرض">
+
+  <button id="gallery-next" type="button" aria-label="الصورة التالية">›</button>
+
+  <div id="gallery-counter">1 / 3</div>
+</div>
+
+<section class="card reveal">
+<h2 class="countdown-title">المتبقي على فرحتنا</h2>
+<div class="countdown" id="countdown">
+<div class="counter"><strong id="days">00</strong><span>يوم</span></div>
+<div class="counter"><strong id="hours">00</strong><span>ساعة</span></div>
+<div class="counter"><strong id="minutes">00</strong><span>دقيقة</span></div>
+<div class="counter"><strong id="seconds">00</strong><span>ثانية</span></div>
+</div>
+</section>
+
+<section class="card reveal">
+<div class="no-photo-icon"><div class="camera-shape"></div><span class="slash"></span></div>
+<h2 class="no-photo-title">ممنوع التصوير</h2>
+<p class="no-photo-text">نرجو منكم بكل لطف عدم التقاط الصور أو تسجيل الفيديوهات، حفاظًا على خصوصية العروس والعائلة.</p>
+</section>
+
+</div>
+<footer class="made-with-love">
+  <div class="made-line"></div>
+  <div class="made-ornament">✦</div>
+  <div class="made-title">صُنِع بكل حب</div>
+  <div class="made-line"></div>
+</footer>
+</main>
+
+<script>
+const introScreen=document.getElementById("intro-screen");
+const mainContent=document.getElementById("main-content");
+const music=document.getElementById("wedding-music");
+const musicBtn=document.getElementById("musicBtn");
+let musicPlaying=false;
+
+function openInvitation(){
+ if(introScreen.classList.contains("opening")) return;
+ introScreen.classList.add("opening");
+ music.volume=.3;
+ music.play().then(()=>{musicPlaying=true;musicBtn.textContent="◼";}).catch(()=>{});
+ setTimeout(()=>{introScreen.style.display="none";mainContent.style.display="block";musicBtn.style.display="flex";observeElements();},1150);
+}
+
+musicBtn.addEventListener("click",async()=>{
+ if(musicPlaying){music.pause();musicPlaying=false;musicBtn.textContent="♫";return;}
+ try{await music.play();musicPlaying=true;musicBtn.textContent="◼";}catch(e){}
+});
+
+/* العد التنازلي: إلى بداية أول مناسبة يوم 6 سبتمبر.
+   غيّر الساعة هنا عندما تعطيني ساعة بداية الحفل. */
+const weddingDate=new Date("September 12, 2026 20:00:00").getTime();
+const timer=setInterval(()=>{
+ const distance=weddingDate-Date.now();
+ if(distance<=0){clearInterval(timer);document.getElementById("countdown").innerHTML="<div style='grid-column:1/-1;font-family:Aref Ruqaa,serif;color:#7f1d2d;font-size:2rem'>لقد حان موعد فرحتنا!</div>";return;}
+ document.getElementById("days").textContent=Math.floor(distance/86400000).toString().padStart(2,"0");
+ document.getElementById("hours").textContent=Math.floor(distance%86400000/3600000).toString().padStart(2,"0");
+ document.getElementById("minutes").textContent=Math.floor(distance%3600000/60000).toString().padStart(2,"0");
+ document.getElementById("seconds").textContent=Math.floor(distance%60000/1000).toString().padStart(2,"0");
+},1000);
+
+
+/* معرض الصور */
+const galleryImages = ["gallery1.jpg","gallery2.jpg","gallery3.jpg"];
+const galleryLightbox = document.getElementById("gallery-lightbox");
+const galleryPreview = document.getElementById("gallery-preview");
+const galleryCounter = document.getElementById("gallery-counter");
+let galleryIndex = 0;
+
+function showGalleryImage(index){
+  galleryIndex = (index + galleryImages.length) % galleryImages.length;
+  galleryPreview.src = galleryImages[galleryIndex];
+  galleryCounter.textContent = (galleryIndex + 1) + " / " + galleryImages.length;
+}
+
+document.querySelectorAll(".gallery-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    showGalleryImage(Number(item.dataset.index));
+    galleryLightbox.classList.add("open");
+    galleryLightbox.setAttribute("aria-hidden","false");
+  });
+});
+
+document.getElementById("gallery-close").addEventListener("click",()=>{
+  galleryLightbox.classList.remove("open");
+  galleryLightbox.setAttribute("aria-hidden","true");
+});
+
+document.getElementById("gallery-prev").addEventListener("click",()=>{
+  showGalleryImage(galleryIndex - 1);
+});
+
+document.getElementById("gallery-next").addEventListener("click",()=>{
+  showGalleryImage(galleryIndex + 1);
+});
+
+galleryLightbox.addEventListener("click",(event)=>{
+  if(event.target === galleryLightbox){
+    galleryLightbox.classList.remove("open");
+    galleryLightbox.setAttribute("aria-hidden","true");
+  }
+});
+
+document.addEventListener("keydown",(event)=>{
+  if(!galleryLightbox.classList.contains("open")) return;
+
+  if(event.key === "Escape"){
+    galleryLightbox.classList.remove("open");
+    galleryLightbox.setAttribute("aria-hidden","true");
+  }
+
+  if(event.key === "ArrowLeft") showGalleryImage(galleryIndex - 1);
+  if(event.key === "ArrowRight") showGalleryImage(galleryIndex + 1);
+});
+
+function observeElements(){
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("visible");}),{threshold:.12});
+ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+  if (typeof QRCode !== "undefined") {
+    new QRCode(document.getElementById("venueQr"), {
+      text: "https://maps.app.goo.gl/3LgmWBZV1zoJDmCD8",
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+});
+</script>
+</body>
+</html>
