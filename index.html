@@ -208,6 +208,64 @@
   .qr-code{width:190px;height:190px}
 }
 
+
+/* أيقونات التاريخ والوقت — بنفس أسلوب الكود المرجعي */
+.date-time-icons{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px;
+  margin:24px auto 4px;
+}
+
+.icon-box{
+  width:140px;
+  background:rgba(255,255,255,.18);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,.16);
+  border:1px solid rgba(255,255,255,.48);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+.icon-header{
+  background-color:rgba(138,32,40,.78);
+  color:white;
+  padding:4px 0;
+  font-family:"Cairo",sans-serif;
+  font-size:1.35rem;
+  letter-spacing:.04em;
+}
+
+.icon-body{
+  padding:15px 0;
+  color:#1f2937;
+}
+
+.icon-value{
+  font-size:3rem;
+  font-weight:800;
+  line-height:1;
+  position:relative;
+  display:inline-block;
+  z-index:2;
+}
+
+.icon-subtitle{
+  color:#6b7280;
+  font-weight:700;
+  margin-top:14px;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+@media(max-width:640px){
+  .icon-box{width:132px}
+  .icon-value{font-size:2.7rem}
+}
+
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
 
 .made-with-love{
@@ -261,6 +319,24 @@ footer{position:relative;z-index:1;text-align:center;color:#fff;padding:20px 15p
 <p class="prayer">أحيطوا ابننا بدعائكم</p>
 <p class="family">تتشرف عائلة مامو<br>بحضور حفل زفاف ابننا</p>
 <img src="hussein-name.png" class="name-image" alt="اسم العريس حسين">
+
+<div class="date-time-icons" dir="ltr">
+  <div class="icon-box">
+    <div class="icon-header">Septembre</div>
+    <div class="icon-body">
+      <div class="icon-value">12</div>
+      <div class="icon-subtitle">Samedi | 2026</div>
+    </div>
+  </div>
+
+  <div class="icon-box">
+    <div class="icon-header">Heure</div>
+    <div class="icon-body">
+      <div class="icon-value">20:00</div>
+      <div class="icon-subtitle">Soirée</div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section class="events reveal">
@@ -271,7 +347,7 @@ footer{position:relative;z-index:1;text-align:center;color:#fff;padding:20px 15p
     حفل زفاف حسين
   </div>
   <div class="event-place">
-    صالة الصنوبر 01
+    Salle des fetes les pins  Rouiba
   </div>
 </article>
 
@@ -289,10 +365,11 @@ footer{position:relative;z-index:1;text-align:center;color:#fff;padding:20px 15p
   <img
     src="venue.jpg"
     class="venue-image"
-    alt="صالة الصنوبر 01">
+    alt="Salle des fetes les pins  Rouiba">
 
   <p class="venue-name">
-    صالة الصنوبر 01
+    Salle des fetes les pins  Rouiba<br>
+    <span style="font-family:'Cairo',sans-serif;font-size:.82em;">قاعة الحفلات الصنوبر الرويبة</span>
   </p>
 
   <div class="qr-wrap">
@@ -300,9 +377,9 @@ footer{position:relative;z-index:1;text-align:center;color:#fff;padding:20px 15p
       href="https://maps.app.goo.gl/3LgmWBZV1zoJDmCD8"
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="فتح موقع صالة الصنوبر 01">
+      aria-label="فتح موقع Salle des fetes les pins  Rouiba">
 
-      <div class="qr-code" id="venueQr" aria-label="رمز QR لموقع صالة الصنوبر 01"></div>
+      <div class="qr-code" id="venueQr" aria-label="رمز QR لموقع Salle des fetes les pins  Rouiba"></div>
 
     </a>
 
